@@ -14,6 +14,9 @@ class ComparisonView extends StatefulWidget {
 class _ComparisonViewState extends State<ComparisonView> {
   @override
   Widget build(BuildContext context) {
+    var media = MediaQuery.of(context).size;
+    double scale = media.width / 375; // Base width for scaling
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: TColor.white,
@@ -24,17 +27,18 @@ class _ComparisonViewState extends State<ComparisonView> {
             Navigator.pop(context);
           },
           child: Container(
-            margin: const EdgeInsets.all(8),
-            height: 40,
-            width: 40,
+            margin: EdgeInsets.all(8 * scale),
+            height: 40 * scale,
+            width: 40 * scale,
             alignment: Alignment.center,
             decoration: BoxDecoration(
-                color: TColor.lightGray,
-                borderRadius: BorderRadius.circular(10)),
+              color: TColor.lightGray,
+              borderRadius: BorderRadius.circular(10 * scale),
+            ),
             child: Image.asset(
               "assets/img/black_btn.png",
-              width: 15,
-              height: 15,
+              width: 15 * scale,
+              height: 15 * scale,
               fit: BoxFit.contain,
             ),
           ),
@@ -42,23 +46,27 @@ class _ComparisonViewState extends State<ComparisonView> {
         title: Text(
           "Comparison",
           style: TextStyle(
-              color: TColor.black, fontSize: 16, fontWeight: FontWeight.w700),
+            color: TColor.black,
+            fontSize: 16 * scale,
+            fontWeight: FontWeight.w700,
+          ),
         ),
         actions: [
           InkWell(
             onTap: () {},
             child: Container(
-              margin: const EdgeInsets.all(8),
-              height: 40,
-              width: 40,
+              margin: EdgeInsets.all(8 * scale),
+              height: 40 * scale,
+              width: 40 * scale,
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                  color: TColor.lightGray,
-                  borderRadius: BorderRadius.circular(10)),
+                color: TColor.lightGray,
+                borderRadius: BorderRadius.circular(10 * scale),
+              ),
               child: Image.asset(
                 "assets/img/more_btn.png",
-                width: 15,
-                height: 15,
+                width: 15 * scale,
+                height: 15 * scale,
                 fit: BoxFit.contain,
               ),
             ),
@@ -67,41 +75,35 @@ class _ComparisonViewState extends State<ComparisonView> {
       ),
       backgroundColor: TColor.white,
       body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+        padding: EdgeInsets.symmetric(
+          vertical: 20 * scale,
+          horizontal: 20 * scale,
+        ),
         child: Column(
           children: [
             IconTitleNextRow(
-                icon: "assets/img/date.png",
-                title: "Select Month 1",
-                time: "May",
-                onPressed: () {},
-                color: TColor.lightGray),
-            const SizedBox(
-              height: 15,
+              icon: "assets/img/date.png",
+              title: "Select Month 1",
+              time: "May",
+              onPressed: () {},
+              color: TColor.lightGray,
             ),
+            SizedBox(height: 15 * scale),
             IconTitleNextRow(
-                icon: "assets/img/date.png",
-                title: "Select Month 2",
-                time: "select Month",
-                onPressed: () {},
-                color: TColor.lightGray),
+              icon: "assets/img/date.png",
+              title: "Select Month 2",
+              time: "select Month",
+              onPressed: () {},
+              color: TColor.lightGray,
+            ),
             const Spacer(),
             RoundButton(
-                title: "Compare",
-                onPressed: () {
-                  // // Navigator.push(
-                  // //   context,
-                  // //   MaterialPageRoute(
-                  // //     builder: (context) => ResultView(
-                  // //       date1: DateTime(2023, 5, 1),
-                  // //       date2: DateTime(2023, 6, 1),
-                  // //     ),
-                  // //   ),
-                  // );
-                }),
-            const SizedBox(
-              height: 15,
+              title: "Compare",
+              onPressed: () {
+                // Navigator logic here
+              },
             ),
+            SizedBox(height: 15 * scale),
           ],
         ),
       ),

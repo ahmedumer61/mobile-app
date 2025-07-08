@@ -1,10 +1,8 @@
-import 'package:fitness_app/common_widget/meal_recommed_cell.dart';
 import 'package:flutter/material.dart';
-
 import '../../common/colo_extension.dart';
 import '../../common_widget/meal_category_cell.dart';
+import '../../common_widget/meal_recommed_cell.dart';
 import '../../common_widget/popular_meal_row.dart';
-import '../../common_widget/today_meal_row.dart';
 import 'food_info_details_view.dart';
 
 class MealFoodDetailsView extends StatefulWidget {
@@ -19,38 +17,14 @@ class _MealFoodDetailsViewState extends State<MealFoodDetailsView> {
   TextEditingController txtSearch = TextEditingController();
 
   List categoryArr = [
-    {
-      "name": "Salad",
-      "image": "assets/img/c_1.png",
-    },
-    {
-      "name": "Cake",
-      "image": "assets/img/c_2.png",
-    },
-    {
-      "name": "Pie",
-      "image": "assets/img/c_3.png",
-    },
-    {
-      "name": "Smoothies",
-      "image": "assets/img/c_4.png",
-    },
-    {
-      "name": "Salad",
-      "image": "assets/img/c_1.png",
-    },
-    {
-      "name": "Cake",
-      "image": "assets/img/c_2.png",
-    },
-    {
-      "name": "Pie",
-      "image": "assets/img/c_3.png",
-    },
-    {
-      "name": "Smoothies",
-      "image": "assets/img/c_4.png",
-    },
+    {"name": "Salad", "image": "assets/img/c_1.png"},
+    {"name": "Cake", "image": "assets/img/c_2.png"},
+    {"name": "Pie", "image": "assets/img/c_3.png"},
+    {"name": "Smoothies", "image": "assets/img/c_4.png"},
+    {"name": "Salad", "image": "assets/img/c_1.png"},
+    {"name": "Cake", "image": "assets/img/c_2.png"},
+    {"name": "Pie", "image": "assets/img/c_3.png"},
+    {"name": "Smoothies", "image": "assets/img/c_4.png"},
   ];
 
   List popularArr = [
@@ -92,6 +66,7 @@ class _MealFoodDetailsViewState extends State<MealFoodDetailsView> {
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context).size;
+    double scale = media.width / 375;
 
     return Scaffold(
       appBar: AppBar(
@@ -99,47 +74,41 @@ class _MealFoodDetailsViewState extends State<MealFoodDetailsView> {
         centerTitle: true,
         elevation: 0,
         leading: InkWell(
-          onTap: () {
-            Navigator.pop(context);
-          },
+          onTap: () => Navigator.pop(context),
           child: Container(
-            margin: const EdgeInsets.all(8),
-            height: 40,
-            width: 40,
+            margin: EdgeInsets.all(8 * scale),
+            height: 40 * scale,
+            width: 40 * scale,
             alignment: Alignment.center,
             decoration: BoxDecoration(
-                color: TColor.lightGray,
-                borderRadius: BorderRadius.circular(10)),
-            child: Image.asset(
-              "assets/img/black_btn.png",
-              width: 15,
-              height: 15,
-              fit: BoxFit.contain,
+              color: TColor.lightGray,
+              borderRadius: BorderRadius.circular(10 * scale),
             ),
+            child: Image.asset("assets/img/black_btn.png",
+                width: 15 * scale, height: 15 * scale, fit: BoxFit.contain),
           ),
         ),
         title: Text(
           widget.eObj["name"].toString(),
           style: TextStyle(
-              color: TColor.black, fontSize: 16, fontWeight: FontWeight.w700),
+              color: TColor.black,
+              fontSize: 16 * scale,
+              fontWeight: FontWeight.w700),
         ),
         actions: [
           InkWell(
             onTap: () {},
             child: Container(
-              margin: const EdgeInsets.all(8),
-              height: 40,
-              width: 40,
+              margin: EdgeInsets.all(8 * scale),
+              height: 40 * scale,
+              width: 40 * scale,
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                  color: TColor.lightGray,
-                  borderRadius: BorderRadius.circular(10)),
-              child: Image.asset(
-                "assets/img/more_btn.png",
-                width: 15,
-                height: 15,
-                fit: BoxFit.contain,
+                color: TColor.lightGray,
+                borderRadius: BorderRadius.circular(10 * scale),
               ),
+              child: Image.asset("assets/img/more_btn.png",
+                  width: 15 * scale, height: 15 * scale, fit: BoxFit.contain),
             ),
           )
         ],
@@ -150,148 +119,131 @@ class _MealFoodDetailsViewState extends State<MealFoodDetailsView> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              margin: const EdgeInsets.symmetric(horizontal: 20),
-              padding: const EdgeInsets.symmetric(horizontal: 8),
+              margin: EdgeInsets.symmetric(horizontal: 20 * scale),
+              padding: EdgeInsets.symmetric(horizontal: 8 * scale),
               decoration: BoxDecoration(
-                  color: TColor.white,
-                  borderRadius: BorderRadius.circular(15),
-                  boxShadow: const [
-                    BoxShadow(
-                        color: Colors.black12,
-                        blurRadius: 2,
-                        offset: Offset(0, 1))
-                  ]),
+                color: TColor.white,
+                borderRadius: BorderRadius.circular(15 * scale),
+                boxShadow: const [
+                  BoxShadow(
+                      color: Colors.black12,
+                      blurRadius: 2,
+                      offset: Offset(0, 1))
+                ],
+              ),
               child: Row(
                 children: [
                   Expanded(
-                      child: TextField(
-                    controller: txtSearch,
-                    decoration: InputDecoration(
+                    child: TextField(
+                      controller: txtSearch,
+                      decoration: InputDecoration(
+                        isDense: true,
                         focusedBorder: InputBorder.none,
                         enabledBorder: InputBorder.none,
-                        prefixIcon: Image.asset(
-                          "assets/img/search.png",
-                          width: 25,
-                          height: 25,
-                        ),
-                        hintText: "Search Pancake"),
-                  )),
+                        prefixIcon: Image.asset("assets/img/search.png",
+                            width: 20 * scale, height: 20 * scale),
+                        hintText: "Search Pancake",
+                      ),
+                    ),
+                  ),
                   Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 8),
+                    margin: EdgeInsets.symmetric(horizontal: 8 * scale),
                     width: 1,
-                    height: 25,
+                    height: 25 * scale,
                     color: TColor.gray.withOpacity(0.3),
                   ),
                   InkWell(
                     onTap: () {},
                     child: Image.asset(
                       "assets/img/Filter.png",
-                      width: 25,
-                      height: 25,
+                      width: 25 * scale,
+                      height: 25 * scale,
                     ),
                   )
                 ],
               ),
             ),
-            SizedBox(
-              height: media.width * 0.05,
-            ),
+            SizedBox(height: media.width * 0.05),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Category",
-                    style: TextStyle(
-                        color: TColor.black,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700),
-                  ),
-                ],
+              padding: EdgeInsets.symmetric(horizontal: 20 * scale),
+              child: Text(
+                "Category",
+                style: TextStyle(
+                    color: TColor.black,
+                    fontSize: 16 * scale,
+                    fontWeight: FontWeight.w700),
               ),
             ),
             SizedBox(
-              height: 120,
+              height: 120 * scale,
               child: ListView.builder(
-                  padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                  scrollDirection: Axis.horizontal,
-                  itemCount: categoryArr.length,
-                  itemBuilder: (context, index) {
-                    var cObj = categoryArr[index] as Map? ?? {};
-                    return MealCategoryCell(
-                      cObj: cObj,
-                      index: index,
-                    );
-                  }),
+                scrollDirection: Axis.horizontal,
+                padding: EdgeInsets.symmetric(horizontal: 15 * scale),
+                itemCount: categoryArr.length,
+                itemBuilder: (context, index) {
+                  var cObj = categoryArr[index];
+                  return MealCategoryCell(
+                    cObj: cObj,
+                    index: index,
+                  );
+                },
+              ),
             ),
-            SizedBox(
-              height: media.width * 0.05,
-            ),
+            SizedBox(height: media.width * 0.05),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              padding: EdgeInsets.symmetric(horizontal: 20 * scale),
               child: Text(
                 "Recommendation\nfor Diet",
                 style: TextStyle(
                     color: TColor.black,
-                    fontSize: 16,
+                    fontSize: 16 * scale,
                     fontWeight: FontWeight.w700),
               ),
             ),
             SizedBox(
               height: media.width * 0.6,
               child: ListView.builder(
-                  padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                  scrollDirection: Axis.horizontal,
-                  itemCount: recommendArr.length,
-                  itemBuilder: (context, index) {
-                    var fObj = recommendArr[index] as Map? ?? {};
-                    return MealRecommendCell(
-                      fObj: fObj,
-                      index: index,
-                    );
-                  }),
+                scrollDirection: Axis.horizontal,
+                padding: EdgeInsets.symmetric(horizontal: 15 * scale),
+                itemCount: recommendArr.length,
+                itemBuilder: (context, index) {
+                  var fObj = recommendArr[index];
+                  return MealRecommendCell(fObj: fObj, index: index);
+                },
+              ),
             ),
-            SizedBox(
-              height: media.width * 0.05,
-            ),
+            SizedBox(height: media.width * 0.05),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              padding: EdgeInsets.symmetric(horizontal: 20 * scale),
               child: Text(
                 "Popular",
                 style: TextStyle(
                     color: TColor.black,
-                    fontSize: 16,
+                    fontSize: 16 * scale,
                     fontWeight: FontWeight.w700),
               ),
             ),
             ListView.builder(
-                padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                physics: const NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: popularArr.length,
-                itemBuilder: (context, index) {
-                  var fObj = popularArr[index] as Map? ?? {};
-                  return InkWell(
-                    onTap: () {
-                      Navigator.push(
+              physics: const NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              padding: EdgeInsets.symmetric(horizontal: 15 * scale),
+              itemCount: popularArr.length,
+              itemBuilder: (context, index) {
+                var fObj = popularArr[index];
+                return InkWell(
+                  onTap: () {
+                    Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => FoodInfoDetailsView(
-                            dObj: fObj,
-                            mObj: widget.eObj,
-                          ),
-                        ),
-                      );
-                    },
-                    child: PopularMealRow(
-                      mObj: fObj,
-                    ),
-                  );
-                }),
-            SizedBox(
-              height: media.width * 0.05,
+                              dObj: fObj, mObj: widget.eObj),
+                        ));
+                  },
+                  child: PopularMealRow(mObj: fObj),
+                );
+              },
             ),
+            SizedBox(height: media.width * 0.05),
           ],
         ),
       ),

@@ -17,7 +17,7 @@ class SleepScheduleView extends StatefulWidget {
 
 class _SleepScheduleViewState extends State<SleepScheduleView> {
   CalendarAgendaController _calendarAgendaControllerAppBar =
-      CalendarAgendaController();
+  CalendarAgendaController();
   late DateTime _selectedDateAppBBar;
 
   List todaySleepArr = [
@@ -107,7 +107,7 @@ class _SleepScheduleViewState extends State<SleepScheduleView> {
               children: [
                 Padding(
                   padding:
-                      const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                  const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                   child: Container(
                     width: double.maxFinite,
                     padding: const EdgeInsets.all(20),
@@ -164,7 +164,7 @@ class _SleepScheduleViewState extends State<SleepScheduleView> {
                 ),
                 Padding(
                   padding:
-                      const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                  const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                   child: Text(
                     "Your Schedule",
                     style: TextStyle(

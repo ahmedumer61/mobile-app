@@ -1,9 +1,8 @@
-import 'package:fitness_app/common/colo_extension.dart';
-import 'package:fitness_app/common_widget/round_button.dart';
 import 'package:flutter/material.dart';
 import 'package:readmore/readmore.dart';
-
+import '../../common/colo_extension.dart';
 import '../../common_widget/food_step_detail_row.dart';
+import '../../common_widget/round_button.dart';
 import 'meal_schedule_view.dart';
 
 class FoodInfoDetailsView extends StatefulWidget {
@@ -45,12 +44,12 @@ class _FoodInfoDetailsViewState extends State<FoodInfoDetailsView> {
     {
       "no": "3",
       "detail":
-          "In a seperate place, mix the eggs and liquid milk until blended"
+          "In a separate place, mix the eggs and liquid milk until blended"
     },
     {
       "no": "4",
       "detail":
-          "Put the egg and milk mixture into the dry ingredients, Stir untul smooth and smooth"
+          "Put the egg and milk mixture into the dry ingredients, stir until smooth"
     },
     {"no": "5", "detail": "Prepare all of the ingredients that needed"},
   ];
@@ -58,6 +57,8 @@ class _FoodInfoDetailsViewState extends State<FoodInfoDetailsView> {
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context).size;
+    double scale = media.width / 375;
+
     return Container(
       decoration:
           BoxDecoration(gradient: LinearGradient(colors: TColor.primaryG)),
@@ -66,53 +67,43 @@ class _FoodInfoDetailsViewState extends State<FoodInfoDetailsView> {
           return [
             SliverAppBar(
               backgroundColor: Colors.transparent,
-              centerTitle: true,
               elevation: 0,
+              centerTitle: true,
               leading: InkWell(
-                onTap: () {
-                  Navigator.pop(context);
-                },
+                onTap: () => Navigator.pop(context),
                 child: Container(
-                  margin: const EdgeInsets.all(8),
-                  height: 40,
-                  width: 40,
+                  margin: EdgeInsets.all(8 * scale),
+                  height: 40 * scale,
+                  width: 40 * scale,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                       color: TColor.lightGray,
-                      borderRadius: BorderRadius.circular(10)),
-                  child: Image.asset(
-                    "assets/img/black_btn.png",
-                    width: 15,
-                    height: 15,
-                    fit: BoxFit.contain,
-                  ),
+                      borderRadius: BorderRadius.circular(10 * scale)),
+                  child: Image.asset("assets/img/black_btn.png",
+                      width: 15 * scale, height: 15 * scale),
                 ),
               ),
               actions: [
                 InkWell(
                   onTap: () {},
                   child: Container(
-                    margin: const EdgeInsets.all(8),
-                    height: 40,
-                    width: 40,
+                    margin: EdgeInsets.all(8 * scale),
+                    height: 40 * scale,
+                    width: 40 * scale,
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                         color: TColor.lightGray,
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Image.asset(
-                      "assets/img/more_btn.png",
-                      width: 15,
-                      height: 15,
-                      fit: BoxFit.contain,
-                    ),
+                        borderRadius: BorderRadius.circular(10 * scale)),
+                    child: Image.asset("assets/img/more_btn.png",
+                        width: 15 * scale, height: 15 * scale),
                   ),
                 )
               ],
             ),
             SliverAppBar(
               backgroundColor: Colors.transparent,
-              centerTitle: true,
               elevation: 0,
+              centerTitle: true,
               leadingWidth: 0,
               leading: Container(),
               expandedHeight: media.width * 0.5,
@@ -134,14 +125,11 @@ class _FoodInfoDetailsViewState extends State<FoodInfoDetailsView> {
                     ),
                     Transform.scale(
                       scale: 1.25,
-                      child: Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Image.asset(
-                          widget.dObj["b_image"].toString(),
-                          width: media.width * 0.50,
-                          height: media.width * 0.50,
-                          fit: BoxFit.contain,
-                        ),
+                      child: Image.asset(
+                        widget.dObj["b_image"].toString(),
+                        width: media.width * 0.50,
+                        height: media.width * 0.50,
+                        fit: BoxFit.contain,
                       ),
                     ),
                   ],
@@ -153,37 +141,33 @@ class _FoodInfoDetailsViewState extends State<FoodInfoDetailsView> {
         body: Container(
           decoration: BoxDecoration(
               color: TColor.white,
-              borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(25), topRight: Radius.circular(25))),
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(25 * scale),
+                topRight: Radius.circular(25 * scale),
+              )),
           child: Scaffold(
             backgroundColor: Colors.transparent,
             body: Stack(
               children: [
                 SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            width: 50,
-                            height: 4,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 15 * scale),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(height: 10 * scale),
+                        Center(
+                          child: Container(
+                            width: 50 * scale,
+                            height: 4 * scale,
                             decoration: BoxDecoration(
-                                color: TColor.gray.withOpacity(0.3),
-                                borderRadius: BorderRadius.circular(3)),
+                              color: TColor.gray.withOpacity(0.3),
+                              borderRadius: BorderRadius.circular(3 * scale),
+                            ),
                           ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: media.width * 0.05,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 15),
-                        child: Row(
+                        ),
+                        SizedBox(height: 20 * scale),
+                        Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Expanded(
@@ -193,15 +177,16 @@ class _FoodInfoDetailsViewState extends State<FoodInfoDetailsView> {
                                   Text(
                                     widget.dObj["name"].toString(),
                                     style: TextStyle(
-                                        color: TColor.black,
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w700),
+                                      color: TColor.black,
+                                      fontSize: 16 * scale,
+                                      fontWeight: FontWeight.w700,
+                                    ),
                                   ),
-                                  Text(
-                                    "Ahmed Umer",
-                                    style: TextStyle(
-                                        color: TColor.gray, fontSize: 12),
-                                  ),
+                                  Text("Ahmed Umer",
+                                      style: TextStyle(
+                                        color: TColor.gray,
+                                        fontSize: 12 * scale,
+                                      )),
                                 ],
                               ),
                             ),
@@ -209,236 +194,193 @@ class _FoodInfoDetailsViewState extends State<FoodInfoDetailsView> {
                               onPressed: () {},
                               child: Image.asset(
                                 "assets/img/fav.png",
-                                width: 15,
-                                height: 15,
-                                fit: BoxFit.contain,
+                                width: 15 * scale,
+                                height: 15 * scale,
                               ),
                             )
                           ],
                         ),
-                      ),
-                      SizedBox(
-                        height: media.width * 0.05,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 15),
-                        child: Text(
+                        SizedBox(height: 20 * scale),
+                        Text(
                           "Nutrition",
                           style: TextStyle(
-                              color: TColor.black,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w700),
+                            color: TColor.black,
+                            fontSize: 16 * scale,
+                            fontWeight: FontWeight.w700,
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        height: 50,
-                        child: ListView.builder(
-                            padding: const EdgeInsets.symmetric(horizontal: 12),
+                        SizedBox(
+                          height: 50 * scale,
+                          child: ListView.builder(
                             scrollDirection: Axis.horizontal,
-                            shrinkWrap: true,
                             itemCount: nutritionArr.length,
                             itemBuilder: (context, index) {
-                              var nObj = nutritionArr[index] as Map? ?? {};
+                              var nObj = nutritionArr[index];
                               return Container(
-                                  margin: const EdgeInsets.symmetric(
-                                      vertical: 8, horizontal: 4),
-                                  padding:
-                                      const EdgeInsets.symmetric(horizontal: 8),
-                                  decoration: BoxDecoration(
-                                      gradient: LinearGradient(
-                                        colors: [
-                                          TColor.primaryColor2.withOpacity(0.4),
-                                          TColor.primaryColor1.withOpacity(0.4)
-                                        ],
-                                      ),
-                                      borderRadius: BorderRadius.circular(10)),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Image.asset(
-                                        nObj["image"].toString(),
-                                        width: 15,
-                                        height: 15,
-                                        fit: BoxFit.contain,
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Text(
-                                          nObj["title"].toString(),
-                                          style: TextStyle(
-                                              color: TColor.black,
-                                              fontSize: 12),
-                                        ),
-                                      )
+                                margin: EdgeInsets.symmetric(
+                                    vertical: 8 * scale, horizontal: 4 * scale),
+                                padding:
+                                    EdgeInsets.symmetric(horizontal: 8 * scale),
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                    colors: [
+                                      TColor.primaryColor2.withOpacity(0.4),
+                                      TColor.primaryColor1.withOpacity(0.4),
                                     ],
-                                  ));
-                            }),
-                      ),
-                      SizedBox(
-                        height: media.width * 0.05,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 15),
-                        child: Text(
+                                  ),
+                                  borderRadius:
+                                      BorderRadius.circular(10 * scale),
+                                ),
+                                child: Row(
+                                  children: [
+                                    Image.asset(
+                                      nObj["image"],
+                                      width: 15 * scale,
+                                      height: 15 * scale,
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.all(8.0 * scale),
+                                      child: Text(
+                                        nObj["title"],
+                                        style: TextStyle(
+                                            color: TColor.black,
+                                            fontSize: 12 * scale),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                        SizedBox(height: 20 * scale),
+                        Text(
                           "Descriptions",
                           style: TextStyle(
                               color: TColor.black,
-                              fontSize: 16,
+                              fontSize: 16 * scale,
                               fontWeight: FontWeight.w700),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 4,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 15),
-                        child: ReadMoreText(
-                          'Pancakes are some people\'s favorite breakfast, who doesn\'t like pancakes? Especially with the real honey splash on top of the pancakes, of course everyone loves that! besides being Pancakes are some people\'s favorite breakfast, who doesn\'t like pancakes? Especially with the real honey splash on top of the pancakes, of course everyone loves that! besides being',
+                        SizedBox(height: 4 * scale),
+                        ReadMoreText(
+                          'Pancakes are some people\'s favorite breakfast, who doesn\'t like pancakes?...',
                           trimLines: 4,
-                          colorClickableText: TColor.black,
                           trimMode: TrimMode.Line,
                           trimCollapsedText: ' Read More ...',
                           trimExpandedText: ' Read Less',
+                          colorClickableText: TColor.black,
                           style: TextStyle(
-                            color: TColor.gray,
-                            fontSize: 12,
-                          ),
-                          moreStyle: const TextStyle(
-                              fontSize: 12, fontWeight: FontWeight.w700),
+                              color: TColor.gray, fontSize: 12 * scale),
+                          moreStyle: TextStyle(
+                              fontSize: 12 * scale,
+                              fontWeight: FontWeight.w700),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 15),
-                        child: Row(
+                        SizedBox(height: 15 * scale),
+                        Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
-                              "Ingredients That You\nWill Need",
-                              style: TextStyle(
-                                  color: TColor.black,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w700),
-                            ),
+                            Text("Ingredients That You\nWill Need",
+                                style: TextStyle(
+                                    color: TColor.black,
+                                    fontSize: 16 * scale,
+                                    fontWeight: FontWeight.w700)),
                             TextButton(
                               onPressed: () {},
-                              child: Text(
-                                "${stepArr.length} Items",
-                                style:
-                                    TextStyle(color: TColor.gray, fontSize: 12),
-                              ),
+                              child: Text("${stepArr.length} Items",
+                                  style: TextStyle(
+                                      color: TColor.gray,
+                                      fontSize: 12 * scale)),
                             )
                           ],
                         ),
-                      ),
-                      SizedBox(
-                        height: (media.width * 0.25) + 40,
-                        child: ListView.builder(
-                            padding: const EdgeInsets.symmetric(horizontal: 12),
+                        SizedBox(
+                          height: (media.width * 0.25) + 40 * scale,
+                          child: ListView.builder(
                             scrollDirection: Axis.horizontal,
-                            shrinkWrap: true,
                             itemCount: ingredientsArr.length,
                             itemBuilder: (context, index) {
-                              var nObj = ingredientsArr[index] as Map? ?? {};
+                              var iObj = ingredientsArr[index];
                               return Container(
-                                  margin:
-                                      const EdgeInsets.symmetric(horizontal: 4),
-                                  width: media.width * 0.23,
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Container(
-                                        width: media.width * 0.23,
-                                        height: media.width * 0.23,
-                                        decoration: BoxDecoration(
-                                            color: TColor.lightGray,
-                                            borderRadius:
-                                                BorderRadius.circular(10)),
-                                        alignment: Alignment.center,
-                                        child: Image.asset(
-                                          nObj["image"].toString(),
-                                          width: 45,
-                                          height: 45,
-                                          fit: BoxFit.contain,
-                                        ),
+                                width: media.width * 0.23,
+                                margin:
+                                    EdgeInsets.symmetric(horizontal: 4 * scale),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      height: media.width * 0.23,
+                                      decoration: BoxDecoration(
+                                        color: TColor.lightGray,
+                                        borderRadius:
+                                            BorderRadius.circular(10 * scale),
                                       ),
-                                      const SizedBox(
-                                        height: 4,
+                                      alignment: Alignment.center,
+                                      child: Image.asset(
+                                        iObj["image"],
+                                        width: 45 * scale,
+                                        height: 45 * scale,
                                       ),
-                                      Text(
-                                        nObj["title"].toString(),
+                                    ),
+                                    SizedBox(height: 4 * scale),
+                                    Text(iObj["title"],
                                         style: TextStyle(
-                                            color: TColor.black, fontSize: 12),
-                                      ),
-                                      Text(
-                                        nObj["value"].toString(),
+                                            fontSize: 12 * scale,
+                                            color: TColor.black)),
+                                    Text(iObj["value"],
                                         style: TextStyle(
-                                            color: TColor.gray, fontSize: 10),
-                                      ),
-                                    ],
-                                  ));
-                            }),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 15),
-                        child: Row(
+                                            fontSize: 10 * scale,
+                                            color: TColor.gray)),
+                                  ],
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                        Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
-                              "Step by Step",
-                              style: TextStyle(
-                                  color: TColor.black,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w700),
-                            ),
+                            Text("Step by Step",
+                                style: TextStyle(
+                                    fontSize: 16 * scale,
+                                    fontWeight: FontWeight.w700,
+                                    color: TColor.black)),
                             TextButton(
                               onPressed: () {},
-                              child: Text(
-                                "${stepArr.length} Steps",
-                                style:
-                                    TextStyle(color: TColor.gray, fontSize: 12),
-                              ),
-                            )
+                              child: Text("${stepArr.length} Steps",
+                                  style: TextStyle(
+                                      color: TColor.gray,
+                                      fontSize: 12 * scale)),
+                            ),
                           ],
                         ),
-                      ),
-                      ListView.builder(
-                        physics: const NeverScrollableScrollPhysics(),
-                        padding: const EdgeInsets.symmetric(horizontal: 15),
-                        shrinkWrap: true,
-                        itemCount: stepArr.length,
-                        itemBuilder: ((context, index) {
-                          var sObj = stepArr[index] as Map? ?? {};
-
-                          return FoodStepDetailRow(
-                            sObj: sObj,
-                            isLast: stepArr.last == sObj,
-                          );
-                        }),
-                      ),
-                      SizedBox(
-                        height: media.width * 0.25,
-                      ),
-                    ],
+                        ListView.builder(
+                          itemCount: stepArr.length,
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          itemBuilder: (context, index) {
+                            var sObj = stepArr[index];
+                            return FoodStepDetailRow(
+                                sObj: sObj,
+                                isLast: index == stepArr.length - 1);
+                          },
+                        ),
+                        SizedBox(height: media.width * 0.25),
+                      ],
+                    ),
                   ),
                 ),
                 SafeArea(
                   child: Column(
-                    mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 15),
+                        padding: EdgeInsets.symmetric(horizontal: 15 * scale),
                         child: RoundButton(
-                            title: "Add to ${widget.mObj["name"]} Meal",
-                            onPressed: () {}),
+                          title: "Add to ${widget.mObj["name"]} Meal",
+                          onPressed: () {},
+                        ),
                       ),
+                      SizedBox(height: 15 * scale),
                     ],
                   ),
                 )
